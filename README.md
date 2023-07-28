@@ -1,2 +1,2 @@
 # t.me/wincmd64 blog
-1. [Бытовой backup](https://github.com/wincmd64/blog/wiki/Бытовой-backup)
+2022. [Бытовой backup](https://github.com/wincmd64/blog/wiki/Бытовой-backup)
