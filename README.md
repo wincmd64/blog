@@ -8,4 +8,4 @@
 2023
 - [Устанавливаем Windows. Полный гайд](https://github.com/wincmd64/blog/wiki/Устанавливаем-Windows.-Полный-гайд)
 - [Покупаем ПК в 2023 году](https://github.com/wincmd64/blog/wiki/Покупаем-ПК-в-2023-году)
-- [Готовим Vivaldi](https://github.com/wincmd64/blog/wiki/Покупаем-ПК-в-2023-году)
+- [Готовим Vivaldi](https://github.com/wincmd64/blog/wiki/Готовим-Vivaldi)
