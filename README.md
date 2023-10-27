@@ -1,11 +1,12 @@
 # t.me/wincmd64 blog
-2022
-- [Бытовой backup](https://github.com/wincmd64/blog/wiki/Бытовой-backup)
+"Кухня"
 - [Готовим Google Chrome](https://github.com/wincmd64/blog/wiki/Готовим-Google-Chrome)
 - [Готовим Firefox](https://github.com/wincmd64/blog/wiki/Готовим-Firefox)
-- [Про безопасность и антивирусы](https://github.com/wincmd64/blog/wiki/Про-безопасность-и-антивирусы)
+- [Готовим Vivaldi](https://github.com/wincmd64/blog/wiki/Готовим-Vivaldi)
+- [Готовим android](https://github.com/wincmd64/blog/wiki/Готовим-android)
 
-2023
+Разное
 - [Устанавливаем Windows. Полный гайд](https://github.com/wincmd64/blog/wiki/Устанавливаем-Windows.-Полный-гайд)
 - [Покупаем ПК в 2023 году](https://github.com/wincmd64/blog/wiki/Покупаем-ПК-в-2023-году)
-- [Готовим Vivaldi](https://github.com/wincmd64/blog/wiki/Готовим-Vivaldi)
+- [Бытовой backup](https://github.com/wincmd64/blog/wiki/Бытовой-backup)
+- [Про безопасность и антивирусы](https://github.com/wincmd64/blog/wiki/Про-безопасность-и-антивирусы)
