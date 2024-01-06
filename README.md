@@ -4,6 +4,7 @@
 - [Готовим Firefox](https://github.com/wincmd64/blog/wiki/Готовим-Firefox)
 - [Готовим Vivaldi](https://github.com/wincmd64/blog/wiki/Готовим-Vivaldi)
 - [Готовим android](https://github.com/wincmd64/blog/wiki/Готовим-android)
+- [Готовим Avast](https://github.com/wincmd64/blog/wiki/Готовим-Avast)
 
 Разное
 - [Устанавливаем Windows. Полный гайд](https://github.com/wincmd64/blog/wiki/Устанавливаем-Windows.-Полный-гайд)
