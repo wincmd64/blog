@@ -9,7 +9,6 @@
 Разное
 - [Устанавливаем Windows. Полный гайд](https://github.com/wincmd64/blog/wiki/Устанавливаем-Windows.-Полный-гайд)
 - [Бытовой backup](https://github.com/wincmd64/blog/wiki/Бытовой-backup)
-- [Про безопасность и антивирусы](https://github.com/wincmd64/blog/wiki/Про-безопасность-и-антивирусы)
 
 Железо
 - [Покупаем ПК в 2023 году](https://github.com/wincmd64/blog/wiki/Покупаем-ПК-в-2023-году)
