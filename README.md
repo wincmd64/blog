@@ -12,7 +12,6 @@
 
 Разное
 - [Устанавливаем Windows. Полный гайд](https://github.com/wincmd64/blog/wiki/Устанавливаем-Windows.-Полный-гайд)
-- [Бытовой backup](https://github.com/wincmd64/blog/wiki/Бытовой-backup)
 
 Железо
 - [Готовим android](https://github.com/wincmd64/blog/wiki/Готовим-android)
