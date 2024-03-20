@@ -17,3 +17,5 @@
 - [Готовим android](https://github.com/wincmd64/blog/wiki/Готовим-android)
 - [Покупаем ПК в 2023 году](https://github.com/wincmd64/blog/wiki/Покупаем-ПК-в-2023-году)
 - [Про Nintendo Switch](https://github.com/wincmd64/blog/wiki/Про-Nintendo-Switch)
+
+#### 💾 Pre-configured [Total Commander](https://github.com/wincmd64/blog/wiki/TotalCmd)
