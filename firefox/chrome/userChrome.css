@@ -1,0 +1,20 @@
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/compact_extensions_panel.css */
+@import url(compact_extensions_panel.css);
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/compact_proton.css */
+@import url(compact_proton.css);
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/overlay_tab_audio_icons.css */
+@import url(overlay_tab_audio_icons.css);
+
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/iconized_content_context_menu.css */
+@import url(iconized_content_context_menu.css);
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/iconized_main_menu.css */
+@import url(iconized_main_menu.css);
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/iconized_places_context_menu.css */
+@import url(iconized_places_context_menu.css);
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/iconized_tabs_context_menu.css */
+@import url(iconized_tabs_context_menu.css);
+/* https://github.com/MrOtherGuy/firefox-csshacks/blob/master/chrome/iconized_textbox_context_menu.css */
+@import url(iconized_textbox_context_menu.css);
+
+@import url(tab_loading_progress_bar_MOD.css);
+@import url(my.css);
