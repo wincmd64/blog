@@ -1,1 +1,1 @@
-This repository related to telegram channel https://t.me/wincmd64
+# This repository related to telegram channel [wincmd64](https://t.me/wincmd64)
