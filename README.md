@@ -1,5 +1,1 @@
-telegram channel - https://t.me/wincmd64
-
-Blog - https://github.com/wincmd64/blog/wiki
-
-Gist - https://gist.github.com/wincmd64
+This repository related to telegram channel https://t.me/wincmd64
