@@ -3,15 +3,15 @@
 
 
 // ---------- HIDEN
-// возможность использовать кастомные userChrome.css и userContent.css
+// РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°СЃС‚РѕРјРЅС‹Рµ userChrome.css Рё userContent.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
-// правильное копирование юникодных ссылок, к примеру, из Википедии
+// РїСЂР°РІРёР»СЊРЅРѕРµ РєРѕРїРёСЂРѕРІР°РЅРёРµ СЋРЅРёРєРѕРґРЅС‹С… СЃСЃС‹Р»РѕРє, Рє РїСЂРёРјРµСЂСѓ, РёР· Р’РёРєРёРїРµРґРёРё
 user_pref("browser.urlbar.decodeURLsOnCopy", true);
 // Backspase
 user_pref("browser.backspace_action", 0);
-// скрыть кнопку "список всех вкладок"
+// СЃРєСЂС‹С‚СЊ РєРЅРѕРїРєСѓ "СЃРїРёСЃРѕРє РІСЃРµС… РІРєР»Р°РґРѕРє"
 user_pref("browser.tabs.tabmanager.enabled", false);
-// закладки открываются в фоне
+// Р·Р°РєР»Р°РґРєРё РѕС‚РєСЂС‹РІР°СЋС‚СЃСЏ РІ С„РѕРЅРµ
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 // has-selector
 user_pref("layout.css.has-selector.enabled", true);
@@ -19,17 +19,17 @@ user_pref("layout.css.has-selector.enabled", true);
 // user_pref("gfx.crash-guard.status.wmfvpxvideo", 2);
 
 // ---------- GUI
-// убрать предупреждение при переходе в about:config
+// СѓР±СЂР°С‚СЊ РїСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ РїСЂРё РїРµСЂРµС…РѕРґРµ РІ about:config
 user_pref("browser.aboutConfig.showWarning", false);
-// ON Открывать предыдущие окна и вкладки
+// ON РћС‚РєСЂС‹РІР°С‚СЊ РїСЂРµРґС‹РґСѓС‰РёРµ РѕРєРЅР° Рё РІРєР»Р°РґРєРё
 user_pref("browser.startup.page", 3);
-// OFF Запрашивать сохранение логинов и паролей
+// OFF Р—Р°РїСЂР°С€РёРІР°С‚СЊ СЃРѕС…СЂР°РЅРµРЅРёРµ Р»РѕРіРёРЅРѕРІ Рё РїР°СЂРѕР»РµР№
 user_pref("signon.rememberSignons", false);
-// скрыть кнопку pocket
+// СЃРєСЂС‹С‚СЊ РєРЅРѕРїРєСѓ pocket
 user_pref("browser.pocket.enabled", false);
-// скрыть ярлыки
+// СЃРєСЂС‹С‚СЊ СЏСЂР»С‹РєРё
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
-// панель закладок - всегда отображать
+// РїР°РЅРµР»СЊ Р·Р°РєР»Р°РґРѕРє - РІСЃРµРіРґР° РѕС‚РѕР±СЂР°Р¶Р°С‚СЊ
 user_pref("browser.toolbars.bookmarks.visibility", "always");
 
 // ---------- TELEMETRY - from https://github.com/yokoffing/Betterfox
