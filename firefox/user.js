@@ -1,4 +1,4 @@
-// Tested on Firefox 128x ESR
+// Tested on Firefox 140x ESR
 // Used https://searchfox.org/ 
 
 
