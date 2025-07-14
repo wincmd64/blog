@@ -1,8 +1,14 @@
 :: Various ffmpeg commands
 :: by t.me/wincmd64
 
+:: Usage:
 :: Create a shortcut to this .bat file in the Shell:SendTo folder
 :: or button in TotalCmd with the %P%S parameter
+
+:: Command line arguments:
+:: /s - create shortcut in Shell:SendTo folder
+
+:: Note: this file must use code page OEM 866
 
 @echo off
 setlocal
@@ -10,14 +16,22 @@ setlocal
 for /f "tokens=* delims=" %%a in ('where ffmpeg.exe 2^>nul') do set "app=%%a"
 if not exist "%app%" (color 4 & echo. & echo  ffmpeg.exe not found. Try: winget install Gyan.FFmpeg & echo. & pause & exit) else (TITLE %app%)
 
-:: Use /s to create shortcut in Shell:SendTo
+:: arguments
 if "%~1"=="/s" (if "%~2"=="" goto :shortcut)
 
+echo.
+echo  ███████╗███████╗███╗   ███╗██████╗ ███████╗ ██████╗ 
+echo  ██╔════╝██╔════╝████╗ ████║██╔══██╗██╔════╝██╔════╝ 
+echo  █████╗  █████╗  ██╔████╔██║██████╔╝█████╗  ██║  ███╗
+echo  ██╔══╝  ██╔══╝  ██║╚██╔╝██║██╔═══╝ ██╔══╝  ██║   ██║
+echo  ██║     ██║     ██║ ╚═╝ ██║██║     ███████╗╚██████╔╝
+echo  ╚═╝     ╚═╝     ╚═╝     ╚═╝╚═╝     ╚══════╝ ╚═════╝ 
+echo.
 :: checking the number of selected files
 set count=0
 for %%A in (%*) do set /a count+=1
 
-if %count% equ 0 (echo  No files selected & pause & exit)
+if %count% equ 0 (echo  No files selected & echo. & pause & exit)
 
 if %count% equ 1 (
     echo  Processing: %*
@@ -92,8 +106,6 @@ color 27 & timeout 2 & exit
 :shortcut
 powershell -NoP -NoL -Ep Bypass -c ^
 "$s = (New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('SendTo') + '\FFmpeg Tools.lnk'); ^
-$s.TargetPath = '%~f0'; ^
-$s.IconLocation = 'shell32.dll,115'; ^
-$s.Save()"
+$s.TargetPath = '%~f0'; $s.IconLocation = 'shell32.dll,115'; $s.Save()"
 echo  Shortcut 'FFmpeg Tools.lnk' created.
 pause & exit
