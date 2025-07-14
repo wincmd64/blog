@@ -93,6 +93,7 @@ del listfile.txt
 color 27 & timeout 2 & exit
 :Option_5
 set /p ext=Enter extention (png jpg bmp gif ico ... all supported: https://irfanview.com/main_formats.htm ): 
+if not defined ext (goto Option_5)
 FOR %%k IN (%*) DO (
     echo  FILE: "%%~k"
     "%app%" "%%~k" /resample /convert="%%~dpnk.%ext%" /makecopy
@@ -108,6 +109,7 @@ del listfile.txt
 color 27 & timeout 2 & exit
 :Option_7
 set /p ext=Enter extention (png jpg bmp gif ico ... all supported: https://irfanview.com/main_formats.htm ): 
+if not defined ext (goto Option_7)
 FOR %%k IN (%*) DO (
     echo  FILE: "%%~k"
     "%app%" "%%~k" /extract=^(.,%ext%^) /killmesoftly
