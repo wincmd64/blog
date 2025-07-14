@@ -22,11 +22,9 @@ if not defined app (for /f "tokens=* delims=" %%a in ('where i_view64.exe 2^>nul
 if not exist "%app%" (color 4 & echo. & echo  i_view64.exe not found. Try: winget install IrfanSkiljan.IrfanView & echo. & pause & exit) else (TITLE %app%)
 
 :: arguments
-if "%~1"=="" goto :main
 if /i "%~1"=="/s" (if "%~2"=="" goto :shortcut)
 if /i "%~1"=="/a" (if "%~2"=="" goto :associate)
 
-:main
 echo.
 echo  ██╗██████╗ ███████╗ █████╗ ███╗   ██╗██╗   ██╗██╗███████╗██╗    ██╗
 echo  ██║██╔══██╗██╔════╝██╔══██╗████╗  ██║██║   ██║██║██╔════╝██║    ██║
@@ -40,7 +38,7 @@ chcp 1251 >nul
 set count=0
 for %%A in (%*) do set /a count+=1
 
-if %count% equ 0 (echo  No files selected & pause & exit)
+if %count% equ 0 (echo  No files selected & echo. & pause & exit)
 
 if %count% equ 1 (echo  Processing: %* & echo.) else (echo  Processing: %count% files & echo.)
 echo  1 = resize image by 50%%
@@ -146,7 +144,7 @@ pause & exit
 :associate
 for /f "tokens=* delims=" %%a in ('where SetUserFTA.exe 2^>nul') do set "fta=%%a"
 if not exist "%fta%" (color 4 & echo. & echo  SetUserFTA.exe not found. Try download from: https://setuserfta.com/SetUserFTA.zip & echo. & pause & exit)
-(Net session >nul 2>&1)&&(cd /d "%~dp0")||(echo  Pls start as admin & pause & exit)
+(Net session >nul 2>&1)&&(cd /d "%~dp0")||(color 4 & echo. & echo  Pls start as admin & echo. & pause & exit)
 echo  Associate image files with "%app%" ? & pause
 for %%A in ("%app%") do set "app_dir=%%~dpA"
 set "icons=%app_dir%Plugins\Icons.dll"
