@@ -34,16 +34,17 @@ for %%A in (%*) do set /a count+=1
 if %count% equ 0 (echo  No files selected & echo. & pause & exit)
 
 if %count% equ 1 (
-    echo  Processing: %*
-    echo   Press [1] Remove audio
-    echo   Press [2] Extract audio
-    echo   Press [3] Create GIF
-    echo   Press [4] Cut video
-    echo   Press [5] 2x fast
-    echo   Press [6] 0.5x speed
-    echo   Press [7] Convert to 1080p ^(x264^)
-    echo   Press [8] Rotate right
-    echo   Press [9] Rotate left
+    echo  Processing: %* & echo.
+    echo  1 = Remove audio
+    echo  2 = Extract audio
+    echo  3 = Create GIF
+    echo  4 = Cut video
+    echo  5 = 2x fast
+    echo  6 = 0.5x speed
+    echo  7 = Convert to 1080p ^(x264^)
+    echo  8 = Rotate right
+    echo  9 = Rotate left
+    echo.
     CHOICE /C "123456789" /M "Your choice?:" >nul 2>&1
     if errorlevel 9 goto Option_9
     if errorlevel 8 goto Option_8
