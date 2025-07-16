@@ -75,20 +75,24 @@ set /p ext=Enter output format (pdf, txt, ...):
 goto main
 
 :start
+set "err="
 if "%layout%"=="multiple" (
     FOR %%k IN (%*) DO (
         echo  FILE: "%%~k"
         "%app%" "%%~k" "%%~dpnk_%lang%" -l %lang% %ext%
+        if errorlevel 1 set "err=1"
     )
+    if defined err (color 4 & pause) else (color 27 & timeout 2)
 ) else (
-    for %%F in (%1) do pushd "%%~dpF"
+    pushd "%~dp1"
     (
         for %%i in (%*) do @echo %%~fi
     ) > "listfile.txt"
     "%app%" "listfile.txt" "%~dpn1_%lang%" -l %lang% %ext%
+    if errorlevel 1 (color 4 & pause) else (color 27 & timeout 2)
     del listfile.txt
 )
-color 27 & timeout 2 & exit
+exit
 
 :shortcut
 powershell -NoP -NoL -Ep Bypass -c ^
