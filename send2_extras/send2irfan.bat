@@ -77,20 +77,14 @@ FOR %%k IN (%*) DO (
 color 27 & timeout 2 & exit
 :Option_3
 pushd "%~dp1"
-(
-    for %%i in (%*) do @echo %%~fi
-) > "listfile.txt"
-"%app%" /panorama=(1,filelist="listfile.txt")
-del listfile.txt
-color 27 & timeout 2 & exit
+for %%i in (%*) do call set args=%%args%%,"%%~nxi"
+"%app%" /panorama=(1%args%)
+color 27 & timeout 1 & exit
 :Option_4
 pushd "%~dp1"
-(
-    for %%i in (%*) do @echo %%~fi
-) > "listfile.txt"
-"%app%" /panorama=(2,filelist="listfile.txt")
-del listfile.txt
-color 27 & timeout 2 & exit
+for %%i in (%*) do call set args=%%args%%,"%%~nxi"
+"%app%" /panorama=(2%args%)
+color 27 & timeout 1 & exit
 :Option_5
 set /p ext=Enter extention (png jpg bmp gif ico ... all supported: https://irfanview.com/main_formats.htm ): 
 if not defined ext (goto Option_5)
@@ -101,15 +95,12 @@ FOR %%k IN (%*) DO (
 color 27 & timeout 2 & exit
 :Option_6
 pushd "%~dp1"
-(
-    for %%i in (%*) do @echo %%~fi
-) > "listfile.txt"
+for %%i in (%*) do call set args=%%args%%,"%%~nxi"
 echo  1 = convert as PDF
 echo  2 = convert as TIF
 CHOICE /C 12 /M "Your choice?:" >nul 2>&1
-if errorlevel 2 "%app%" /multitif=(%~n1.tif,filelist="listfile.txt") /killmesoftly
-if errorlevel 1 "%app%" /multipdf=(%~n1.pdf,filelist="listfile.txt") /killmesoftly
-del listfile.txt
+if errorlevel 2 "%app%" /multitif=(%~n1.tif%args%) /killmesoftly
+if errorlevel 1 "%app%" /multipdf=(%~n1.pdf%args%) /killmesoftly
 color 27 & timeout 2 & exit
 :Option_7
 set /p ext=Enter extention (png jpg bmp gif ico ... all supported: https://irfanview.com/main_formats.htm ): 
@@ -175,6 +166,11 @@ assoc .gif=irfan_gif
 ftype irfan_gif="%app%" "%%1"
 SetUserFTA.exe .gif irfan_gif
 reg add "HKCU\Software\Classes\irfan_gif\DefaultIcon" /ve /d "%icons%,10" /f
+
+assoc .tif=irfan_tif
+ftype irfan_tif="%app%" "%%1"
+SetUserFTA.exe .tif irfan_tif
+reg add "HKCU\Software\Classes\irfan_tif\DefaultIcon" /ve /d "%icons%,31" /f
 
 echo.
 SetUserFTA.exe get | findstr /i "irfan"
