@@ -45,7 +45,7 @@ if %count% equ 1 (
     echo  8 = Rotate right
     echo  9 = Rotate left
     echo.
-    CHOICE /C "123456789" /M "Your choice?:" >nul 2>&1
+    CHOICE /C 123456789 /M "Your choice?:" >nul 2>&1
     if errorlevel 9 goto Option_9
     if errorlevel 8 goto Option_8
     if errorlevel 7 goto Option_7
@@ -96,7 +96,7 @@ color 27 & timeout 2 & exit
 :MultiFile
 echo  Merge %count% files? & pause
 chcp 65001 >nul
-for %%F in (%1) do pushd "%%~dpF"
+pushd "%~dp1"
 (
     for %%i in (%*) do @echo file '%%~fi'
 ) > "listfile.txt"
