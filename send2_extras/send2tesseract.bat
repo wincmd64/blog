@@ -18,7 +18,7 @@ set "myapp="
 if defined myapp if exist "%myapp%" (set "app=%myapp%") 
 :: path to tesseract.exe - from PATH or same folder
 if not defined app (for /f "tokens=* delims=" %%a in ('where tesseract.exe 2^>nul') do set "app=%%a")
-if not exist "%app%" (color 4 & echo. & echo  tesseract.exe not found. Try: winget install UB-Mannheim.TesseractOCR & echo. & pause & exit) else (TITLE %app%)
+if not exist "%app%" (color 4 & echo. & echo  tesseract.exe not found. Try download from: https://github.com/UB-Mannheim/tesseract/wiki & echo. & pause & exit) else (TITLE %app%)
 
 :: arguments
 if /i "%~1"=="/s" (if "%~2"=="" goto :shortcut)
