@@ -46,12 +46,12 @@ echo  2 = blur effect
 echo  3 = horizontal panorama
 echo  4 = vertical panorama
 echo  5 = convert to .ext
-echo  6 = create multipage PDF from input files
+echo  6 = create multipage PDF or TIF from input files
 echo  7 = extract all pages from a multipage file to .ext
 echo  8 = jpg lossless rotate
 echo  9 = set as wallpaper
 echo.
-CHOICE /C "123456789" /M "Your choice?:" >nul 2>&1
+CHOICE /C 123456789 /M "Your choice?:" >nul 2>&1
 if errorlevel 9 goto Option_9
 if errorlevel 8 goto Option_8
 if errorlevel 7 goto Option_7
@@ -76,7 +76,7 @@ FOR %%k IN (%*) DO (
 )
 color 27 & timeout 2 & exit
 :Option_3
-for %%F in (%1) do pushd "%%~dpF"
+pushd "%~dp1"
 (
     for %%i in (%*) do @echo %%~fi
 ) > "listfile.txt"
@@ -84,7 +84,7 @@ for %%F in (%1) do pushd "%%~dpF"
 del listfile.txt
 color 27 & timeout 2 & exit
 :Option_4
-for %%F in (%1) do pushd "%%~dpF"
+pushd "%~dp1"
 (
     for %%i in (%*) do @echo %%~fi
 ) > "listfile.txt"
@@ -100,11 +100,15 @@ FOR %%k IN (%*) DO (
 )
 color 27 & timeout 2 & exit
 :Option_6
-for %%F in (%1) do pushd "%%~dpF"
+pushd "%~dp1"
 (
     for %%i in (%*) do @echo %%~fi
 ) > "listfile.txt"
-"%app%" /multipdf=(%~n1.pdf,filelist="listfile.txt") /killmesoftly
+echo  1 = convert as PDF
+echo  2 = convert as TIF
+CHOICE /C 12 /M "Your choice?:" >nul 2>&1
+if errorlevel 2 "%app%" /multitif=(%~n1.tif,filelist="listfile.txt") /killmesoftly
+if errorlevel 1 "%app%" /multipdf=(%~n1.pdf,filelist="listfile.txt") /killmesoftly
 del listfile.txt
 color 27 & timeout 2 & exit
 :Option_7
@@ -116,18 +120,19 @@ FOR %%k IN (%*) DO (
 )
 color 27 & timeout 2 & exit
 :Option_8
-for %%F in (%1) do pushd "%%~dpF"
-(
-    for %%i in (%*) do @echo %%~fi
-) > "listfile.txt"
+if /I not "%~x1"==".jpg" echo  NOTICE: first file is not a .JPG & echo.
 echo  1 = flip vertically
 echo  2 = flip horizontally
 echo  3 = rotate 90 degrees (default)
 echo  4 = rotate 180 degrees
 echo  5 = rotate 270 degrees
-echo  6 = auto rotate
-set /p opt=Enter option or press Enter for default (rotate 90 degrees):
+echo  6 = auto rotate & echo.
+set /p opt=Enter option or press Enter for default (rotate 90 degrees): 
 if "%opt%"=="" (SET opt=3)
+pushd "%~dp1"
+(
+    for %%i in (%*) do @echo %%~fi
+) > "listfile.txt"
 "%app%" /filelist="listfile.txt" /jpg_rotate=^(%opt%,1,0,1^) /killmesoftly
 del listfile.txt
 color 27 & timeout 2 & exit
