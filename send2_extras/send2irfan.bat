@@ -41,6 +41,7 @@ for %%A in (%*) do set /a count+=1
 if %count% equ 0 (echo  No files selected & echo. & pause & exit)
 
 if %count% equ 1 (echo  Processing: %* & echo.) else (echo  Processing: %count% files & echo.)
+if "%~x1"=="" echo  NOTICE: first argument is likely a folder or has no extension. & echo.
 echo  1 = resize image by 50%%
 echo  2 = blur effect
 echo  3 = horizontal panorama
