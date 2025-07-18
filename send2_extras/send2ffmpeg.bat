@@ -35,6 +35,7 @@ if %count% equ 0 (echo  No files selected & echo. & pause & exit)
 
 if %count% equ 1 (
     echo  Processing: %* & echo.
+    if "%~x1"=="" echo  NOTICE: first argument is likely a folder or has no extension. & echo.
     echo  1 = Remove audio
     echo  2 = Extract audio
     echo  3 = Create GIF
@@ -94,7 +95,8 @@ color 27 & timeout 2 & exit
 color 27 & timeout 2 & exit
 
 :MultiFile
-echo  Merge %count% files? & pause
+if "%~x1"=="" echo  NOTICE: first argument is likely a folder or has no extension. & echo.
+echo  Merge %count% files? & echo. & pause
 chcp 65001 >nul
 pushd "%~dp1"
 (
