@@ -13,11 +13,15 @@
 @echo off
 setlocal
 
-:: path to tesseract.exe - custom if nedded
+:: path to tesseract.exe -- custom if nedded
 set "myapp="
 if defined myapp if exist "%myapp%" (set "app=%myapp%") 
-:: path to tesseract.exe - from PATH or same folder
+:: path to tesseract.exe -- from PATH or same folder
 if not defined app (for /f "tokens=* delims=" %%a in ('where tesseract.exe 2^>nul') do set "app=%%a")
+:: path to tesseract.exe -- from registry
+if not defined app (for /f "tokens=3*" %%a in ('reg query "HKLM\SOFTWARE\Tesseract-OCR" /v Path 2^>nul') do set "tesspath=%%a%%b")
+if defined tesspath set "app=%tesspath%\tesseract.exe"
+:: path to tesseract.exe -- fallback, manual download
 if not exist "%app%" (color 4 & echo. & echo  tesseract.exe not found. Try download from: https://github.com/UB-Mannheim/tesseract/wiki & echo. & pause & exit) else (TITLE %app%)
 
 :: arguments
@@ -98,6 +102,6 @@ exit
 :shortcut
 powershell -NoP -NoL -Ep Bypass -c ^
 "$s = (New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('SendTo') + '\Tesseract OCR.lnk'); ^
-$s.TargetPath = '%~f0'; $s.IconLocation = 'shell32.dll,1'; $s.Save()"
+$s.TargetPath = '%~f0'; $s.IconLocation = 'shell32.dll,55'; $s.Save()"
 echo  Shortcut 'Tesseract OCR.lnk' created.
 pause & exit
