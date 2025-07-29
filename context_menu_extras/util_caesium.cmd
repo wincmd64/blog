@@ -17,17 +17,17 @@ reg add "HKCU\Software\Classes\Directory\shell\wincmd64_caesium\command" /ve /d 
 reg add "HKCU\Software\Classes\SystemFileAssociations\.jpg\shell\wincmd64_caesium" /v "MUIVerb" /d "Image lossless compression" /f
 reg add "HKCU\Software\Classes\SystemFileAssociations\.jpg\shell\wincmd64_caesium" /v "Icon" /d "shell32.dll,80" /f
 reg add "HKCU\Software\Classes\SystemFileAssociations\.jpg\shell\wincmd64_caesium" /v "Extended" /f
-reg add "HKCU\Software\Classes\SystemFileAssociations\.jpg\shell\wincmd64_caesium\command" /ve /d "cmd /c \"\"%app%\" --lossless --exif --keep-dates --same-folder-as-input --overwrite bigger \"%%1\" ^& pause\"" /f
+reg add "HKCU\Software\Classes\SystemFileAssociations\.jpg\shell\wincmd64_caesium\command" /ve /d "cmd /c \"echo. ^& echo  Start? ^& pause ^& \"%app%\" --lossless --exif --keep-dates --same-folder-as-input --overwrite bigger \"%%1\" ^& pause\"" /f
 
 reg add "HKCU\Software\Classes\SystemFileAssociations\.png\shell\wincmd64_caesium" /v "MUIVerb" /d "Image lossless compression" /f
 reg add "HKCU\Software\Classes\SystemFileAssociations\.png\shell\wincmd64_caesium" /v "Icon" /d "shell32.dll,80" /f
 reg add "HKCU\Software\Classes\SystemFileAssociations\.png\shell\wincmd64_caesium" /v "Extended" /f
-reg add "HKCU\Software\Classes\SystemFileAssociations\.png\shell\wincmd64_caesium\command" /ve /d "cmd /c \"\"%app%\" --lossless --exif --keep-dates --same-folder-as-input --overwrite bigger \"%%1\" ^& pause\"" /f
+reg add "HKCU\Software\Classes\SystemFileAssociations\.png\shell\wincmd64_caesium\command" /ve /d "cmd /c \"echo. ^& echo  Start? ^& pause ^& \"%app%\" --lossless --exif --keep-dates --same-folder-as-input --overwrite bigger \"%%1\" ^& pause\"" /f
 
 reg add "HKCU\Software\Classes\SystemFileAssociations\.webp\shell\wincmd64_caesium" /v "MUIVerb" /d "Image lossless compression" /f
 reg add "HKCU\Software\Classes\SystemFileAssociations\.webp\shell\wincmd64_caesium" /v "Icon" /d "shell32.dll,80" /f
 reg add "HKCU\Software\Classes\SystemFileAssociations\.webp\shell\wincmd64_caesium" /v "Extended" /f
-reg add "HKCU\Software\Classes\SystemFileAssociations\.webp\shell\wincmd64_caesium\command" /ve /d "cmd /c \"\"%app%\" --lossless --exif --keep-dates --same-folder-as-input --overwrite bigger \"%%1\" ^& pause\"" /f
+reg add "HKCU\Software\Classes\SystemFileAssociations\.webp\shell\wincmd64_caesium\command" /ve /d "cmd /c \"echo. ^& echo  Start? ^& pause ^& \"%app%\" --lossless --exif --keep-dates --same-folder-as-input --overwrite bigger \"%%1\" ^& pause\"" /f
 
 color 27 & timeout 1 & exit
 
