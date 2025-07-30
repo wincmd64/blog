@@ -1,4 +1,5 @@
-:: IrfanView converter
+:: IrfanView x64 converter
+:: tested on: Win 11 24H2, Win 10 22H2
 :: by t.me/wincmd64
 
 :: Usage:
@@ -13,13 +14,65 @@
 
 @echo off
 setlocal
+cd /d "%~dp0"
 
 :: path to i_view64.exe - custom if nedded
 set "myapp="
 if defined myapp if exist "%myapp%" (set "app=%myapp%") 
 :: path to i_view64.exe - from PATH or same folder
 if not defined app (for /f "tokens=* delims=" %%a in ('where i_view64.exe 2^>nul') do set "app=%%a")
-if not exist "%app%" (color 4 & echo. & echo  i_view64.exe not found. Try: winget install IrfanSkiljan.IrfanView & echo. & pause & exit) else (TITLE %app%)
+:: trying to download IrfanView + all plugins + skin + lang + configure .ini
+if not exist "%app%" (
+    echo. & echo  i_view64.exe not found. Try to download? & echo. & pause
+    :: checking connection
+    ping -n 1 www.irfanview.com >nul 2>&1
+    if errorlevel 1 (echo. & echo  Unable to reach www.irfanview.com. Check your internet connection. & echo. & pause & exit)
+    :: get latest version
+    for /f tokens^=1-3^ delims^=^" %%i in ('curl.exe --ssl-no-revoke -s "https://www.irfanview.com/64bit.htm" ^| FINDSTR /IRC:"href=.*iview[0-9]*_x64\.zip"') do (
+        set "mainZip=%%~nxj"
+        goto :afterMainZip
+    )
+    :afterMainZip
+    set "pluginsZip=%mainZip:_x64.zip=_plugins_x64.zip%"
+    echo. & echo  Trying to download ... & echo.
+    if not exist "%mainZip%" curl.exe --ssl-no-revoke -LR#H "Referer: https://www.irfanview.info/" -o "%mainZip%" "https://www.irfanview.info/files/%mainZip%"
+    if not exist "%pluginsZip%" curl.exe --ssl-no-revoke -LR#H "Referer: https://www.irfanview.info/" -o "%pluginsZip%" "https://www.irfanview.info/files/%pluginsZip%"
+    if not exist "irfanview_skin_iconshock.zip" curl.exe --ssl-no-revoke -LOR# "https://www.irfanview.com/skins/irfanview_skin_iconshock.zip"
+    if not exist "irfanview_lang_ukrainian.zip" curl.exe --ssl-no-revoke -LOR# "https://www.irfanview.net/lang/irfanview_lang_ukrainian.zip"
+    md "%~dp0IrfanView"
+    echo. & echo  Trying to unpack ...
+    tar -xf "%mainZip%" -C "%~dp0IrfanView" && (del "%mainZip%") || (echo. & echo  error unpacking %mainZip% & pause)
+    tar -xf "%pluginsZip%" -C "%~dp0IrfanView\Plugins" && (del "%pluginsZip%") || (echo. & echo  error unpacking %pluginsZip% & pause)
+    tar -xf "irfanview_skin_iconshock.zip" -C "%~dp0IrfanView\Toolbars" && (del "irfanview_skin_iconshock.zip") || (echo. & echo  error unpacking irfanview_skin_iconshock.zip & pause)
+    tar -xf "irfanview_lang_ukrainian.zip" -C "%~dp0IrfanView\Languages" && (del "irfanview_lang_ukrainian.zip") || (echo. & echo  error unpacking irfanview_lang_ukrainian.zip & pause)
+    echo. & echo  Creating i_view64.ini ...
+    (
+    echo [Viewing]
+    echo BackColor=8421504
+    echo FitWindowOption=3
+    echo ShowMultipageDlg=1
+    echo [Others]
+    echo LoopCurDir=1
+    echo BeepOnLoop=0
+    echo JumpAfterDelete=1
+    echo [WinPosition]
+    echo Maximized=1
+    echo MultiThumb=2,88,161,910,0;
+    echo [Extensions]
+    echo CustomExtensions=JPG^|JPEG^|JPE^|PNG^|GIF^|BMP^|TIF^|TIFF^|ICO^|PSD^|TGA^|WMF^|EMF^|WEBP^|HEIC^|AVIF^|PDF^|DJVU^|
+    echo [Toolbar]
+    echo Skin=IconShock Android_24.png
+    echo Size=24
+    echo Flag=2097151
+    echo [Disabled_PlugIns]
+    echo DICOM.DLL=0
+    echo DJVU.DLL=0
+    echo JPEG2000.DLL=0
+    )>temp.txt
+    :: to UTF-16
+    powershell -command "Get-Content 'temp.txt' | Out-File '%~dp0IrfanView\i_view64.ini' -Encoding Unicode; Remove-Item 'temp.txt'"
+    echo. & echo. & echo  DONE. Add the folder "%~dp0IrfanView" to PATH ^(or move this file into that folder^) and run this file. & echo. & pause & exit
+) else (TITLE %app%)
 
 :: arguments
 if /i "%~1"=="/s" (if "%~2"=="" goto :shortcut)
@@ -38,7 +91,15 @@ chcp 1251 >nul
 set count=0
 for %%A in (%*) do set /a count+=1
 
-if %count% equ 0 (echo  No files selected & echo. & pause & exit)
+if %count% equ 0 (
+    echo  No files selected & echo.
+    echo  1 = create shortcut in Shell:SendTo folder
+    echo  2 = associate image files with IrfanView
+    echo.
+    CHOICE /C 12 /M "Your choice?:" >nul 2>&1
+    if errorlevel 2 goto :associate
+    if errorlevel 1 goto :shortcut
+)
 
 if %count% equ 1 (echo  Processing: %* & echo.) else (echo  Processing: %count% files & echo.)
 if "%~x1"=="" echo  NOTICE: first argument is likely a folder or has no extension. & echo.
@@ -100,7 +161,7 @@ for %%i in (%*) do call set args=%%args%%,"%%~nxi"
 echo  1 = convert as PDF
 echo  2 = convert as TIF
 CHOICE /C 12 /M "Your choice?:" >nul 2>&1
-if errorlevel 2 "%app%" /multitif=(%~n1.tif%args%) /killmesoftly
+if errorlevel 2 "%app%" /multitif=(%~n1.tif%args%) /tifc=6 /killmesoftly
 if errorlevel 1 "%app%" /multipdf=(%~n1.pdf%args%) /killmesoftly
 color 27 & timeout 2 & exit
 :Option_7
@@ -137,14 +198,14 @@ color 27 & timeout 2 & exit
 powershell -NoP -NoL -Ep Bypass -c ^
 "$s = (New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('SendTo') + '\IrfanView converter.lnk'); ^
 $s.TargetPath = '%~f0'; $s.IconLocation = '%app%'; $s.Save()"
-echo  Shortcut 'IrfanView converter.lnk' created.
-pause & exit
+echo. & echo  Shortcut 'IrfanView converter.lnk' created. & echo. & pause & exit
 
 :associate
 for /f "tokens=* delims=" %%a in ('where SetUserFTA.exe 2^>nul') do set "fta=%%a"
 if not exist "%fta%" (color 4 & echo. & echo  SetUserFTA.exe not found. Try download from: https://setuserfta.com/SetUserFTA.zip & echo. & pause & exit)
-(Net session >nul 2>&1)&&(cd /d "%~dp0")||(color 4 & echo. & echo  Pls start as admin & echo. & pause & exit)
-echo  Associate image files with "%app%" ? & pause
+(Net session >nul 2>&1)&&(cd /d "%~dp0")||(PowerShell start """%~0""" -verb RunAs -ArgumentList '/a' & Exit /B)
+cd /d "%~dp0"
+echo. & echo  Associate image files with "%app%" ? & echo. & pause
 for %%A in ("%app%") do set "app_dir=%%~dpA"
 set "icons=%app_dir%Plugins\Icons.dll"
 
@@ -172,6 +233,11 @@ assoc .tif=irfan_tif
 ftype irfan_tif="%app%" "%%1"
 SetUserFTA.exe .tif irfan_tif
 reg add "HKCU\Software\Classes\irfan_tif\DefaultIcon" /ve /d "%icons%,31" /f
+
+assoc .djvu=irfan_djvu
+ftype irfan_djvu="%app%" "%%1"
+SetUserFTA.exe .djvu irfan_djvu
+reg add "HKCU\Software\Classes\irfan_djvu\DefaultIcon" /ve /d "%icons%,5" /f
 
 echo.
 SetUserFTA.exe get | findstr /i "irfan"
