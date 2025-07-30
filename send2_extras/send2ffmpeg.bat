@@ -75,6 +75,7 @@ echo.
 "%app%" -i %1 2>&1 | find "Duration"
 echo.
 set /p start=Start time (e.g. 00:00:03): 
+if "%start%"=="" set start=00:00:00
 set /p end=End time (e.g. 00:00:30): 
 "%app%" -i %1 -ss %start% -to %end% -c:v libx264 -c:a copy "%~dpn1_cut%~x1"
 color 27 & timeout 2 & exit
