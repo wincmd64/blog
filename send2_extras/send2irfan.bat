@@ -34,18 +34,20 @@ if not exist "%app%" (
     )
     :afterMainZip
     set "pluginsZip=%mainZip:_x64.zip=_plugins_x64.zip%"
-    echo. & echo  Trying to download ... & echo.
+     echo. & echo  Trying to download ... & echo.
     if not exist "%mainZip%" curl.exe --ssl-no-revoke -LR#H "Referer: https://www.irfanview.info/" -o "%mainZip%" "https://www.irfanview.info/files/%mainZip%"
     if not exist "%pluginsZip%" curl.exe --ssl-no-revoke -LR#H "Referer: https://www.irfanview.info/" -o "%pluginsZip%" "https://www.irfanview.info/files/%pluginsZip%"
     if not exist "irfanview_skin_iconshock.zip" curl.exe --ssl-no-revoke -LOR# "https://www.irfanview.com/skins/irfanview_skin_iconshock.zip"
     if not exist "irfanview_lang_ukrainian.zip" curl.exe --ssl-no-revoke -LOR# "https://www.irfanview.net/lang/irfanview_lang_ukrainian.zip"
     md "%~dp0IrfanView"
-    echo. & echo  Trying to unpack ...
-    tar -xf "%mainZip%" -C "%~dp0IrfanView" && (del "%mainZip%") || (echo. & echo  error unpacking %mainZip% & pause)
-    tar -xf "%pluginsZip%" -C "%~dp0IrfanView\Plugins" && (del "%pluginsZip%") || (echo. & echo  error unpacking %pluginsZip% & pause)
-    tar -xf "irfanview_skin_iconshock.zip" -C "%~dp0IrfanView\Toolbars" && (del "irfanview_skin_iconshock.zip") || (echo. & echo  error unpacking irfanview_skin_iconshock.zip & pause)
-    tar -xf "irfanview_lang_ukrainian.zip" -C "%~dp0IrfanView\Languages" && (del "irfanview_lang_ukrainian.zip") || (echo. & echo  error unpacking irfanview_lang_ukrainian.zip & pause)
-    echo. & echo  Creating i_view64.ini ...
+     echo. & echo  Trying to unpack ...
+    if exist "%mainZip%" (tar -xf "%mainZip%" -C "%~dp0IrfanView" 2>nul) else (echo. & echo  Where is %mainZip% ? & pause)
+	if exist "%~dp0IrfanView\i_view64.exe" (del "%mainZip%") else (echo. & echo  error unpacking %mainZip% & pause)
+    if exist "%pluginsZip%" (tar -xf "%pluginsZip%" -C "%~dp0IrfanView\Plugins" 2>nul) else (echo. & echo  Where is %pluginsZip% ? & pause)
+	if exist "irfanview_skin_iconshock.zip" (tar -xf "irfanview_skin_iconshock.zip" -C "%~dp0IrfanView\Toolbars" 2>nul) else (echo. & echo  Where is irfanview_skin_iconshock.zip ? & pause)
+    if exist "irfanview_lang_ukrainian.zip" (tar -xf "irfanview_lang_ukrainian.zip" -C "%~dp0IrfanView\Languages" 2>nul) else (echo. & echo  Where is irfanview_lang_ukrainian.zip ? & pause)
+	del "%pluginsZip%" "irfanview_skin_iconshock.zip" "irfanview_lang_ukrainian.zip"
+     echo. & echo  Creating i_view64.ini ...
     (
     echo [Viewing]
     echo BackColor=8421504
@@ -71,7 +73,7 @@ if not exist "%app%" (
     )>temp.txt
     :: to UTF-16
     powershell -command "Get-Content 'temp.txt' | Out-File '%~dp0IrfanView\i_view64.ini' -Encoding Unicode; Remove-Item 'temp.txt'"
-    echo. & echo. & echo  DONE. Add the folder "%~dp0IrfanView" to PATH ^(or move this file into that folder^) and run this file. & echo. & pause & exit
+    echo. & echo. & echo  DONE. & echo. & Add the folder "%~dp0IrfanView" to PATH ^(or move this file into that folder^) and run this file. & echo. & pause & exit
 ) else (TITLE %app%)
 
 :: arguments
