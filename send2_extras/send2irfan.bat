@@ -42,11 +42,11 @@ if not exist "%app%" (
     md "%~dp0IrfanView"
      echo. & echo  Trying to unpack ...
     if exist "%mainZip%" (tar -xf "%mainZip%" -C "%~dp0IrfanView" 2>nul) else (echo. & echo  Where is %mainZip% ? & pause)
-	if exist "%~dp0IrfanView\i_view64.exe" (del "%mainZip%") else (echo. & echo  error unpacking %mainZip% & pause)
+    if exist "%~dp0IrfanView\i_view64.exe" (del "%mainZip%") else (echo. & echo  error unpacking %mainZip% & pause)
     if exist "%pluginsZip%" (tar -xf "%pluginsZip%" -C "%~dp0IrfanView\Plugins" 2>nul) else (echo. & echo  Where is %pluginsZip% ? & pause)
-	if exist "irfanview_skin_iconshock.zip" (tar -xf "irfanview_skin_iconshock.zip" -C "%~dp0IrfanView\Toolbars" 2>nul) else (echo. & echo  Where is irfanview_skin_iconshock.zip ? & pause)
+    if exist "irfanview_skin_iconshock.zip" (tar -xf "irfanview_skin_iconshock.zip" -C "%~dp0IrfanView\Toolbars" 2>nul) else (echo. & echo  Where is irfanview_skin_iconshock.zip ? & pause)
     if exist "irfanview_lang_ukrainian.zip" (tar -xf "irfanview_lang_ukrainian.zip" -C "%~dp0IrfanView\Languages" 2>nul) else (echo. & echo  Where is irfanview_lang_ukrainian.zip ? & pause)
-	del "%pluginsZip%" "irfanview_skin_iconshock.zip" "irfanview_lang_ukrainian.zip"
+    del "%pluginsZip%" "irfanview_skin_iconshock.zip" "irfanview_lang_ukrainian.zip"
      echo. & echo  Creating i_view64.ini ...
     (
     echo [Viewing]
@@ -73,7 +73,7 @@ if not exist "%app%" (
     )>temp.txt
     :: to UTF-16
     powershell -command "Get-Content 'temp.txt' | Out-File '%~dp0IrfanView\i_view64.ini' -Encoding Unicode; Remove-Item 'temp.txt'"
-    echo. & echo. & echo  DONE. & echo. & Add the folder "%~dp0IrfanView" to PATH ^(or move this file into that folder^) and run this file. & echo. & pause & exit
+    echo. & echo. & echo  DONE. & echo  Add the folder "%~dp0IrfanView" to PATH ^(or move this file into that folder^) and run this file. & echo. & pause & exit
 ) else (TITLE %app%)
 
 :: arguments
@@ -244,3 +244,4 @@ reg add "HKCU\Software\Classes\irfan_djvu\DefaultIcon" /ve /d "%icons%,5" /f
 echo.
 SetUserFTA.exe get | findstr /i "irfan"
 pause & exit
+
