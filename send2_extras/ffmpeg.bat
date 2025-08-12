@@ -111,5 +111,4 @@ color 27 & timeout 2 & exit
 powershell -NoP -NoL -Ep Bypass -c ^
 "$s = (New-Object -ComObject WScript.Shell).CreateShortcut([Environment]::GetFolderPath('SendTo') + '\FFmpeg Tools.lnk'); ^
 $s.TargetPath = '%~f0'; $s.IconLocation = 'shell32.dll,115'; $s.Save()"
-echo  Shortcut 'FFmpeg Tools.lnk' created.
-pause & exit
+echo. & echo  Shortcut 'FFmpeg Tools.lnk' created. & echo. & pause & exit
