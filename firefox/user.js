@@ -1,4 +1,4 @@
-// Tested on Firefox 140x ESR
+﻿// Tested on Firefox 140x ESR
 // Used https://searchfox.org/ 
 
 
@@ -15,6 +15,11 @@ user_pref("browser.tabs.tabmanager.enabled", false);
 user_pref("browser.tabs.loadBookmarksInBackground", true);
 // has-selector
 user_pref("layout.css.has-selector.enabled", true);
+// font fix -- https://bugzilla.mozilla.org/show_bug.cgi?id=1924346
+user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_for_families", "Arial,Consolas,Courier New,Microsoft Sans Serif,Segoe UI,Tahoma,Trebuchet MS,Verdana");
+user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_max_size", 15); 
+// подтверждение открытия >5 закладок сразу
+user_pref("browser.tabs.maxOpenBeforeWarn", 5); 
 // youtube fix
 // user_pref("gfx.crash-guard.status.wmfvpxvideo", 2);
 
