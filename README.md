@@ -8,4 +8,4 @@ On this page:
 
 Also available:
 * [gist](https://gist.github.com/wincmd64) -- various `.ps1`, `.bat`, `.ahk` and other scripts
-* [wiki](https://github.com/wincmd64/blog/wiki) -- IT articles, pre-configured [Total Commander](https://github.com/wincmd64/blog/wiki/TotalCmd)
+* [wiki](https://github.com/wincmd64/blog/wiki) -- a few IT articles
