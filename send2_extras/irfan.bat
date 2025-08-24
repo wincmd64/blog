@@ -24,8 +24,8 @@ if not defined app (for /f "tokens=* delims=" %%a in ('where i_view64.exe 2^>nul
 if not exist "%app%" (
     echo. & echo  i_view64.exe not found. Try to download? & echo. & pause
     :: checking connection
-    ping -n 1 www.irfanview.com >nul 2>&1
-    if errorlevel 1 (echo. & echo  Unable to reach www.irfanview.com. Check your internet connection. & echo. & pause & exit)
+    ping -n 1 www.irfanview.info >nul 2>&1
+    if errorlevel 1 (echo. & echo  Unable to reach www.irfanview.info. Check your internet connection. & echo. & pause & exit)
     :: get latest version
     for /f tokens^=1-3^ delims^=^" %%i in ('curl.exe --ssl-no-revoke -s "https://www.irfanview.com/64bit.htm" ^| FINDSTR /IRC:"href=.*iview[0-9]*_x64\.zip"') do (
         set "mainZip=%%~nxj"
@@ -205,7 +205,6 @@ echo. & echo  Shortcut 'IrfanView converter.lnk' created. & echo. & pause & exit
 for /f "tokens=* delims=" %%a in ('where SetUserFTA.exe 2^>nul') do set "fta=%%a"
 if not exist "%fta%" (color 4 & echo. & echo  SetUserFTA.exe not found. Try download from: https://setuserfta.com/SetUserFTA.zip & echo. & pause & exit)
 (Net session >nul 2>&1)&&(cd /d "%~dp0")||(PowerShell start """%~0""" -verb RunAs -ArgumentList '/a' & Exit /B)
-cd /d "%~dp0"
 echo. & echo  Associate image files with "%app%" ? & echo. & pause
 for %%A in ("%app%") do set "app_dir=%%~dpA"
 set "icons=%app_dir%Plugins\Icons.dll"
