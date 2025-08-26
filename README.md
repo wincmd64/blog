@@ -1,11 +1,10 @@
-👉 Follow updates on my TG channel: **@wincmd64**
+Приветствую 👋
+На этой странице представлены материалы из моего telegram-канала [@wincmd64](https://t.me/wincmd64)
 
-On this page:
-* [context_menu_extras/](https://github.com/wincmd64/blog/tree/main/context_menu_extras) -- various add-ons for the Explorer context menu
-* [send2_extras/](https://github.com/wincmd64/blog/tree/main/send2_extras) -- wrappers for utilities used in [Total Commander](https://github.com/wincmd64/blog/wiki/TotalCmd) buttons or as `Shell:SendTo` links
-* [firefox/](https://github.com/wincmd64/blog/tree/main/firefox) -- pre-configured Firefox profile
-* [fastfetch.jsonc](https://github.com/wincmd64/blog/blob/main/fastfetch.jsonc) -- fastfetch preset
 
-Also available:
-* [gist](https://gist.github.com/wincmd64) -- various `.ps1`, `.bat`, `.ahk` and other scripts
-* [wiki](https://github.com/wincmd64/blog/wiki) -- a few IT articles
+- [Total Commander](https://github.com/wincmd64/blog/wiki/TotalCmd)
+- [Готовим Firefox](https://github.com/wincmd64/blog/wiki/Готовим-Firefox)
+- [Базовая безопасность личного ПК](https://github.com/wincmd64/blog/wiki/Базовая-безопасность-личного-ПК)
+- [Изучаем инсталляторы](https://github.com/wincmd64/blog/wiki/Изучаем-инсталляторы)
+- [Устанавливаем Windows. Полный гайд](https://github.com/wincmd64/blog/wiki/Устанавливаем-Windows.-Полный-гайд)
+- [WinGet и Ко](https://github.com/wincmd64/blog/wiki/WinGet-и-Ко)
