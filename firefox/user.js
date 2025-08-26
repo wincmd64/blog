@@ -20,8 +20,8 @@ user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_for_families", 
 user_pref("gfx.font_rendering.cleartype_params.force_gdi_classic_max_size", 15); 
 // подтверждение открытия >5 закладок сразу
 user_pref("browser.tabs.maxOpenBeforeWarn", 5); 
-// youtube fix
-// user_pref("gfx.crash-guard.status.wmfvpxvideo", 2);
+// https://www.comss.ru/page.php?id=14074
+user_pref("dom.private-attribution.submission.enabled", false);
 
 // ---------- GUI
 // убрать предупреждение при переходе в about:config
@@ -54,3 +54,4 @@ user_pref("toolkit.coverage.opt-out", true);
 user_pref("toolkit.coverage.endpoint.base", "");
 user_pref("browser.newtabpage.activity-stream.feeds.telemetry", false);
 user_pref("browser.newtabpage.activity-stream.telemetry", false);
+user_pref("datareporting.usage.uploadEnabled", false);
