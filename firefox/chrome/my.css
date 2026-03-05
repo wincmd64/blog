@@ -14,10 +14,15 @@
 
 /* ---------- TABS ---------- */
 
+/* left right border */
+.tabbrowser-tab .tab-content {
+  border-inline-start: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-inline-end: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
 /* corner shape */
 .tab-background {
   border-radius: var(--user-tab-rounding) var(--user-tab-rounding) 0px 0px !important;  
-  margin-block: 1px 0 !important;
+  margin-block: 1px -1px !important;
 }
 /* Color loaded */
 .tabbrowser-tab:not([busy],[bursting]) .tab-content {

@@ -36,6 +36,9 @@ user_pref("browser.pocket.enabled", false);
 user_pref("browser.newtabpage.activity-stream.feeds.topsites", false);
 // панель закладок - всегда отображать
 user_pref("browser.toolbars.bookmarks.visibility", "always");
+// OFF Предупреждать о нежелательных и редко загружаемых приложениях
+user_pref("browser.safebrowsing.downloads.remote.block_potentially_unwanted", false);
+user_pref("browser.safebrowsing.downloads.remote.block_uncommon", false);
 
 // ---------- TELEMETRY - from https://github.com/yokoffing/Betterfox
 user_pref("datareporting.policy.dataSubmissionEnabled", false);
