@@ -1,0 +1,52 @@
+/* alternative: use https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/non_floating_sharp_tabs.css + https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tab_separator_lines.css */
+
+@media (prefers-color-scheme: dark) {
+    /* 1  Базовая */
+    .tabbrowser-tab {
+      --tab-border-color: #cccccc; /* можно и currentColor */
+      --tab-border-style: solid;
+    }
+    /* 2  Выгруженная */
+    .tabbrowser-tab[pending] {
+      --tab-border-color: gray;
+      --tab-border-style: dashed;
+    }
+    .tabbrowser-tab[pending] .tab-label {
+      font-style: italic !important;
+    }
+    
+    /* 3  Активная #ff9900; */
+    .tabbrowser-tab[selected] {
+      --tab-border-color: #ff9900; /* AccentColor как альтернатива */
+    }
+    
+    /* Сама рамка берётся из переменных */
+    .tabbrowser-tab .tab-background {
+      border: 1px var(--tab-border-style) var(--tab-border-color) !important;
+    }
+    
+    /* 4  Загружающаяся */
+    .tabbrowser-tab:is([busy],[bursting]) .tab-label {
+      animation: uc-tab-pulse 1.2s ease-in-out infinite;
+    }
+    @keyframes uc-tab-pulse {
+      50% { opacity: 0.4; }
+    }
+    
+    /* 5  При наведении */
+    .tabbrowser-tab:hover .tab-background {
+      outline: 1px var(--tab-border-style) var(--tab-border-color) !important;
+      outline-offset: 0 !important;
+    }
+
+    /* Disable background highlight for active tab */
+    .tabbrowser-tab[selected="true"] .tab-background {
+        background-color: transparent !important;
+        background-image: none !important;
+        box-shadow: none !important;
+      }
+    /* Disable background highlight on tab hover */
+    .tabbrowser-tab:not([selected]):hover .tab-background {
+        background-color: transparent !important;
+      }
+}
