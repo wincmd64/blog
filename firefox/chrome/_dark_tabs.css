@@ -1,12 +1,12 @@
 /* alternative: use https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/non_floating_sharp_tabs.css + https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/tab_separator_lines.css */
 
 @media (prefers-color-scheme: dark) {
-    /* 1  Базовая */
+    /* 1  Р‘Р°Р·РѕРІР°СЏ */
     .tabbrowser-tab {
-      --tab-border-color: #cccccc; /* можно и currentColor */
+      --tab-border-color: #cccccc; /* РјРѕР¶РЅРѕ Рё currentColor */
       --tab-border-style: solid;
     }
-    /* 2  Выгруженная */
+    /* 2  Р’С‹РіСЂСѓР¶РµРЅРЅР°СЏ */
     .tabbrowser-tab[pending] {
       --tab-border-color: gray;
       --tab-border-style: dashed;
@@ -15,17 +15,17 @@
       font-style: italic !important;
     }
     
-    /* 3  Активная #ff9900; */
+    /* 3  РђРєС‚РёРІРЅР°СЏ #ff9900; */
     .tabbrowser-tab[selected] {
-      --tab-border-color: #ff9900; /* AccentColor как альтернатива */
+      --tab-border-color: #ff9900; /* AccentColor РєР°Рє Р°Р»СЊС‚РµСЂРЅР°С‚РёРІР° */
     }
     
-    /* Сама рамка берётся из переменных */
+    /* РЎР°РјР° СЂР°РјРєР° Р±РµСЂС‘С‚СЃСЏ РёР· РїРµСЂРµРјРµРЅРЅС‹С… */
     .tabbrowser-tab .tab-background {
       border: 1px var(--tab-border-style) var(--tab-border-color) !important;
     }
     
-    /* 4  Загружающаяся */
+    /* 4  Р—Р°РіСЂСѓР¶Р°СЋС‰Р°СЏСЃСЏ */
     .tabbrowser-tab:is([busy],[bursting]) .tab-label {
       animation: uc-tab-pulse 1.2s ease-in-out infinite;
     }
@@ -33,7 +33,7 @@
       50% { opacity: 0.4; }
     }
     
-    /* 5  При наведении */
+    /* 5  РџСЂРё РЅР°РІРµРґРµРЅРёРё */
     .tabbrowser-tab:hover .tab-background {
       outline: 1px var(--tab-border-style) var(--tab-border-color) !important;
       outline-offset: 0 !important;
